@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ask Mate</title>
+</head>
+<body>
+    <h1>Ask Mate - Questions</h1>
+    <table>
+        <thead>
+            <tr>
+                {% for header in headers %}
+                    <th scope="col">{{ header }}</th>
+                {%  endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for question in questions %}
+                <tr>
+                    {% for key in question.keys() %}
+                        <td>{{ question[key] }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
