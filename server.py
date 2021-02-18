@@ -32,7 +32,23 @@ def add_question():
 def display_one_question(user):
     question = data_handler.get_one_question(user)
     answers = data_handler.get_answers_for_the_question(user)
-    return render_template('one_question.html', question=question, answers=answers)
+    question_id = user
+    return render_template('one_question.html', question=question, answers=answers, question_id=question_id)
+
+
+@app.route('/question/<int:user>/new-answer')
+def display_add_answer(user):
+    question_id = user
+    return render_template('add_answer.html', question_id=question_id)
+
+
+@app.route('/question/<int:user>/new-answer', methods=['POST'])
+def add_new_answer(user):
+    answer = dict(request.form)
+    answer['id'] = data_handler.get_next_id_answer()
+    answer['question_id'] = int(user)
+    data_handler.save_user_answer(answer)
+    return redirect(url_for('display_one_question', user=user))
 
 
 if __name__ == "__main__":
