@@ -8,9 +8,13 @@ app = Flask(__name__)
 @app.route('/')
 @app.route('/list')
 def route_list():
-    questions = data_handler.get_all_questions()
+    list_of_questions = data_handler.get_all_questions()
+    questions = []
+    for question in list_of_questions:
+        if question['active'] != "frozen":
+            questions.append(question)
     headers = data_handler.QUESTION_HEADER
-
+    print(questions)
     return render_template('list.html', questions=questions, headers=headers)
 
 
@@ -23,7 +27,7 @@ def display_add_question():
 def add_question():
     question = dict(request.form)
     question['id'] = data_handler.get_next_id()
-    data_handler.save_user_story(question)
+    data_handler.save_user_story(question, "a")
     print(question)
     return redirect(url_for('route_list'))
 
@@ -49,6 +53,13 @@ def add_new_answer(user):
     answer['question_id'] = int(user)
     data_handler.save_user_answer(answer)
     return redirect(url_for('display_one_question', user=user))
+
+
+@app.route('/question/<int:user>/delete')
+def delete_question(user):
+    questions = data_handler.delete_question(user)
+    data_handler.save_user_story(questions, "w")
+    return redirect(url_for('route_list'))
 
 
 if __name__ == "__main__":

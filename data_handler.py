@@ -6,7 +6,7 @@ ANSWER_FILE_PATH = os.getenv('ANSWER_FILE_PATH') if 'ANSWER_FILE_PATH' in os.env
 ANSWER_HEADER = ['id', 'submission_time', 'vote_number', 'question_id', 'message', 'image']
 QUESTION_FILE_PATH = os.getenv('QUESTION_FILE_PATH') if 'QUESTION_FILE_PATH' in os.environ else\
     'sample_data/question.csv'
-QUESTION_HEADER = ['id', 'submission_time', 'view_number', 'vote_number', 'title', 'message', 'image']
+QUESTION_HEADER = ['id', 'submission_time', 'view_number', 'vote_number', 'title', 'message', 'image', 'active']
 
 
 def get_all_answers():
@@ -65,13 +65,33 @@ def get_next_id_answer():
     return current_max + 1
 
 
-def save_user_story(question):
-    with open(QUESTION_FILE_PATH, 'a', newline="") as csv_file:
-        csv_writer = csv.DictWriter(csv_file, fieldnames=QUESTION_HEADER, delimiter=';', quotechar='|')
-        csv_writer.writerow(question)
+def save_user_story(question, mode):
+    if mode == "a":
+        with open(QUESTION_FILE_PATH, 'a', newline="") as csv_file:
+            csv_writer = csv.DictWriter(csv_file, fieldnames=QUESTION_HEADER, delimiter=';', quotechar='|')
+            csv_writer.writerow(question)
+    if mode == "w":
+        with open(QUESTION_FILE_PATH, 'w', newline="") as csv_file:
+            writer = csv.writer(csv_file, delimiter=";")
+            writer.writerow(QUESTION_HEADER)
+        with open(QUESTION_FILE_PATH, 'a', newline="") as file:
+            csv_writer = csv.DictWriter(file, fieldnames=QUESTION_HEADER, delimiter=';', quotechar='|')
+            for element in question:
+                csv_writer.writerow(element)
 
 
 def save_user_answer(answer):
-    with open(ANSWER_FILE_PATH, 'a', newline="") as csv_file:
+    with open(ANSWER_FILE_PATH, "a", newline="") as csv_file:
         csv_writer = csv.DictWriter(csv_file, fieldnames=ANSWER_HEADER, delimiter=';', quotechar='|')
         csv_writer.writerow(answer)
+
+
+def delete_question(question_id):
+    questions = get_all_questions()
+    for question in questions:
+        if int(question['id']) == int(question_id):
+            question['active'] += "frozen"
+    return questions
+
+
+print(delete_question(1))
