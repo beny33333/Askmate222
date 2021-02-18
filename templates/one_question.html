@@ -8,7 +8,16 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>{{ question[0]['title'] }}</h1><br>
+    <h1>{{ question[0]['title'] }}</h1>
     <h3>{{ question[0]['message'] }}</h3>
+    <h4><i>Answers:</i></h4>
+    {% for answer in answers %}
+        {% for key in answer.keys() %}
+            {% if key == 'message' %}
+                <h4>{{ answer[key] }}</h4>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+
 </body>
 </html>

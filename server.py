@@ -31,8 +31,8 @@ def add_question():
 @app.route('/question/<int:user>')
 def display_one_question(user):
     question = data_handler.get_one_question(user)
-    return render_template('one_question.html', question=question)
-
+    answers = data_handler.get_answers_for_the_question(user)
+    return render_template('one_question.html', question=question, answers=answers)
 
 
 if __name__ == "__main__":
