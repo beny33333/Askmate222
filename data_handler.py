@@ -7,6 +7,7 @@ QUESTION_HEADER = ['id', 'submission_time', 'view_number', 'vote_number', 'title
 
 def get_all_questions():
     questions = []
+    print(QUESTION_FILE_PATH)
     with open(QUESTION_FILE_PATH) as csv_file:
         csv_reader = csv.DictReader(csv_file, delimiter=',', quotechar='|')
         for row in csv_reader:
