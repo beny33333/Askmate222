@@ -1,5 +1,6 @@
 import csv
 import os
+import util
 
 ANSWER_FILE_PATH = os.getenv('ANSWER_FILE_PATH') if 'ANSWER_FILE_PATH' in os.environ else \
     'sample_data/answer.csv'
@@ -20,10 +21,10 @@ def get_all_answers():
 
 def get_all_questions():
     questions = []
-    print(QUESTION_FILE_PATH)
     with open(QUESTION_FILE_PATH) as csv_file:
         csv_reader = csv.DictReader(csv_file, delimiter=';', quotechar='|')
         for row in csv_reader:
+            # util.conver_UNIX_to_datetime(int(row[1]))
             questions.append(row)
     return questions
 
