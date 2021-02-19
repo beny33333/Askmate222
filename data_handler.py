@@ -94,4 +94,17 @@ def delete_question(question_id):
     return questions
 
 
-print(delete_question(1))
+def votes(question_id, plus_or_minus):
+    questions = get_all_questions()
+    for question in questions:
+        if int(question['id']) == int(question_id):
+            if plus_or_minus == "+1":
+                zmienna = int(question['vote_number'])
+                zmienna += 1
+                question['vote_number'] = str(zmienna)
+            else:
+                zmienna = int(question['vote_number'])
+                zmienna -= 1
+                question['vote_number'] = str(zmienna)
+    print(questions)
+    return questions
