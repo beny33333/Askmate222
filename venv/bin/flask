@@ -1,4 +1,4 @@
-#!/home/lupus/Documents/Programowanie/Codecool/web/ask-mate-1-python-maciejlewicki95/venv/bin/python
+#!/home/adamlupus/Documents/Codecool/WEB/ask-mate-1-python-maciejlewicki95/venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
