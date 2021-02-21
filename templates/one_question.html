@@ -10,20 +10,25 @@
 <body>
     <h1>{{ question[0]['title'] }}</h1>
     <h3>{{ question[0]['message'] }}</h3>
-    <h4>Votes:</h4>
-    <h4>{{ question[0]['vote_number'] }}</h4>
+    <h4>Votes: {{ question[0]['vote_number'] }}</h4>
     <a href="{{ url_for('vote_up', user=question_id) }}">Vote Up</a>
     <a href="{{ url_for('vote_down', user=question_id) }}">Vote Down</a>
-    <h4><i>Answers:</i></h4>
-    {% for answer in answers %}
-        {% for key in answer.keys() %}
-            {% if key == 'message' %}
-                <h4>{{ answer[key] }}</h4>
+    <br><br><br><a href="{{ url_for('add_new_answer', user=question_id) }}">Add a new answer</a>
+    <br><br><h3><u>Answers:</u></h3>
+    {% for i in range(length) %}
+        {% for key in answers[i].keys() %}
+            {% if key == 'vote_number' %}
+                <h4>{{ i+1 }}. {{ answers[i]['message'] }}</h4>
+                <h4><i>Votes: {{ answers[i][key] }}</i></h4>
+                <a href="{{ url_for('vote_up_answer', answer_id=answers[i]['id']) }}">Vote Up</a>
+                <a href="{{ url_for('vote_down_answer', answer_id=answers[i]['id']) }}">Vote Down</a>
+                <br><a href="{{ url_for('delete_answer', answer_id=answers[i]['id']) }}">Delete {{ i+1 }}. answer</a>
             {% endif %}
         {% endfor %}
     {% endfor %}
-    <a href="{{ url_for('add_new_answer', user=question_id) }}">Add a new answer</a><br>
     <br>
     <br><a href="{{ url_for('delete_question', user=question_id) }}">Delete question</a>
+    <br><br>
+    <a href="{{ url_for('route_list')}}">Back to questions list</a>
 </body>
 </html>

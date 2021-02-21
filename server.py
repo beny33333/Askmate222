@@ -27,8 +27,8 @@ def add_question():
     question = dict(request.form)
     question['id'] = data_handler.get_next_id()
     question['vote_number'] = "0"
+    question['view_number'] = "0"
     data_handler.save_user_story(question, "a")
-    print(question)
     return redirect(url_for('route_list'))
 
 
@@ -36,8 +36,10 @@ def add_question():
 def display_one_question(user):
     question = data_handler.get_one_question(user)
     answers = data_handler.get_answers_for_the_question(user)
+    length = len(answers)
     question_id = user
-    return render_template('one_question.html', question=question, answers=answers, question_id=question_id)
+    data_handler.question_id_handler(question_id)
+    return render_template('one_question.html', question=question, answers=answers, question_id=question_id, length=length)
 
 
 @app.route('/question/<int:user>/new-answer')
@@ -51,7 +53,8 @@ def add_new_answer(user):
     answer = dict(request.form)
     answer['id'] = data_handler.get_next_id_answer()
     answer['question_id'] = int(user)
-    data_handler.save_user_answer(answer)
+    answer['vote_number'] = "0"
+    data_handler.save_user_answer(answer, 'a')
     return redirect(url_for('display_one_question', user=user))
 
 
@@ -64,7 +67,6 @@ def delete_question(user):
 
 @app.route('/question/<int:user>/vote_up')
 def vote_up(user):
-    print(user)
     questions = data_handler.votes(user, "+1")
     data_handler.save_user_story(questions, "w")
     return redirect(url_for('route_list'))
@@ -75,6 +77,30 @@ def vote_down(user):
     questions = data_handler.votes(user, "-1")
     data_handler.save_user_story(questions, "w")
     return redirect(url_for('route_list'))
+
+
+@app.route('/answer/<int:answer_id>/vote_up/')
+def vote_up_answer(answer_id):
+    answers = data_handler.answer_votes(answer_id, "+1")
+    data_handler.save_user_answer(answers, 'w')
+    user = data_handler.pull_question_id()
+    return redirect(url_for('display_one_question', user=user))
+
+
+@app.route('/answer/<int:answer_id>/vote_down')
+def vote_down_answer(answer_id):
+    answers = data_handler.answer_votes(answer_id, "-1")
+    data_handler.save_user_answer(answers, 'w')
+    user = data_handler.pull_question_id()
+    return redirect(url_for('display_one_question', user=user))
+
+
+@app.route('/answer/<int:answer_id>/delete')
+def delete_answer(answer_id):
+    answers = data_handler.delete_answer(answer_id)
+    data_handler.save_user_answer(answers, 'w')
+    user = data_handler.pull_question_id()
+    return redirect(url_for('display_one_question', user=user))
 
 
 if __name__ == "__main__":
