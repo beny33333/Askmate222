@@ -24,8 +24,9 @@
                     {% for key in question.keys() %}
                         {% if key == 'id' %}
                             <td><a href="{{ url_for("display_one_question", user=question[key]) }}">{{ question[key] }}</a></td>
-                        {% endif %}
-                        {% if key != 'id' and key != 'active' %}
+                        {% elif key == 'image' and question[key] != '' %}
+                            <td><img src= "{{ url_for( 'static', filename = question[key]) }}" title="Image"></td>
+                        {% elif key != 'id' and key != 'active' and key != 'active' %}
                             <td>{{ question[key] }}</td>
                         {% endif %}
                     {% endfor %}
