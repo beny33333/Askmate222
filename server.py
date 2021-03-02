@@ -13,8 +13,9 @@ def route_list():
     for question in list_of_questions:
         if question['active'] != "frozen":
             questions.append(question)
+    length = int(len(questions))
     headers = data_handler.QUESTION_HEADER
-    return render_template('list.html', questions=questions, headers=headers)
+    return render_template('list.html', questions=questions, headers=headers, length=length)
 
 
 @app.route('/add-question')

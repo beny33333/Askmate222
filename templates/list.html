@@ -5,6 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="static/nowy.css">
     <title>Ask Mate</title>
 </head>
 <body>
@@ -14,23 +15,62 @@
         <thead>
             <tr>
                 {% for i in range(6) %}
-                    <th scope="col">{{ headers[i] }}</th>
+                    {% if i == 0 %}
+                        <th scope="col" style="width: 50px; border-left: 2px solid red; border-top-left-radius: 15px;">{{ headers[i] }}</th>
+                    {% elif i == 1 %}
+                        <th scope="col" style="width: 100px;">{{ headers[i] }}</th>
+                    {% elif i == 2 %}
+                        <th scope="col" style="width: 100px;">{{ headers[i] }}</th>
+                    {% elif i == 3 %}
+                        <th scope="col" style="width: 310px;">{{ headers[i] }}</th>
+                    {% elif i == 4 %}
+                        <th scope="col" style="width: 780px;">{{ headers[i] }}</th>
+                    {% elif i == 5 %}
+                        <th scope="col" style="width: 100px; border-top-right-radius: 15px;">{{ headers[i] }}</th>
+                    {% endif %}
                 {% endfor %}
             </tr>
         </thead>
         <tbody>
+       {% set count = namespace(value=0) %}
             {% for question in questions %}
+                {% set count.value = count.value + 1 %}
+
                 <tr>
-                    {% for key in question.keys() %}
-                        {% if key == 'id' %}
-                            <td><a href="{{ url_for("display_one_question", user=question[key]) }}">{{ question[key] }}</a></td>
-                        {% elif key == 'image' and question[key] != '' %}
-                            <td><img src= "{{ url_for( 'static', filename = question[key]) }}" title="Image"></td>
-                        {% elif key != 'id' and key != 'active' and key != 'active' %}
-                            <td>{{ question[key] }}</td>
-                        {% endif %}
-                    {% endfor %}
-                </tr>
+                    {% if count.value < length %}
+                        {% for key in question.keys() %}
+                            {% if key == 'id' and question[key] != length %}
+                                <td style="width: 50px; border-left: 1px solid red;"><a href="{{ url_for("display_one_question", user=question[key]) }}">{{ question[key] }}</a></td>
+
+                            {% endif %}
+                            {% if key == 'image' and question[key] != '' %}
+                                <td style="width: 100px; height: 50px"><img src= "{{ url_for( 'static', filename = question[key]) }}" title="Image"></td>
+                            {% elif key == 'title' %}
+                                <td style="width: 310px; text-align: left;">{{ question[key] }}</td>
+                            {% elif key == 'message' %}
+                                <td style="width: 780px; text-align: left;">{{ question[key] }}</td>
+                            {% elif key != 'id' and key != 'active' and key != 'active' %}
+                                <td> {{ question[key] }}</td>
+                            {% endif %}
+                            {% endfor %}
+                        {% elif count.value == length %}
+                        {% for key in question.keys() %}
+                            {% if key == 'id' %}
+                                <td style="width: 50px; border-left: 1px solid red; border-bottom-left-radius: 15px;"><a href="{{ url_for("display_one_question", user=question[key]) }}">{{ question[key] }}</a></td>
+                            {% elif key == 'image' and question[key] != '' %}
+                                <td style="width: 100px; height: 50px; border-bottom-right-radius: 15px;"><img src= "{{ url_for( 'static', filename = question[key]) }}" title="Image"></td>
+                            {% elif key == 'image' and question[key] == '' %}
+                                <td style="width: 100px; height: 50px; border-bottom-right-radius: 15px;">{{ question[key] }}</td>
+                            {% elif key == 'title' %}
+                                <td style="width: 310px; text-align: left;">{{ question[key] }}</td>
+                            {% elif key == 'message' %}
+                                <td style="width: 780px; text-align: left;">{{ question[key] }}</td>
+                            {% elif key != 'id' and key != 'active' and key != 'img' %}
+                                <td> {{ question[key] }}</td>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                        </tr>
             {% endfor %}
         </tbody>
     </table>
