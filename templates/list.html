@@ -34,17 +34,17 @@
             <tr>
                 {% for i in range(6) %}
                     {% if i == 0 %}
-                        <th scope="col" style="border-top-left-radius: 15px; border-left: 2px solid #300E01">{{ headers[i].upper() }}</th>
+                        <th width="3%" scope="col" style="border-top-left-radius: 15px; border-left: 2px solid #300E01">{{ headers[i].upper() }}</th>
                     {% elif i == 1 %}
-                        <th scope="col"> {{ headers[i].upper() }}</th>
+                        <th width="6%" scope="col"> {{ headers[i].upper() }}</th>
                     {% elif i == 2 %}
-                        <th scope="col">{{ headers[i].upper() }}</th>
+                        <th width="6%" scope="col">{{ headers[i].upper() }}</th>
                     {% elif i == 3 %}
-                        <th scope="col">{{ headers[i].upper() }}</th>
+                        <th width="21%" scope="col">{{ headers[i].upper() }}</th>
                     {% elif i == 4 %}
-                        <th scope="col">{{ headers[i].upper() }}</th>
+                        <th width="57%"scope="col">{{ headers[i].upper() }}</th>
                     {% elif i == 5 %}
-                        <th scope="col" style="border-top-right-radius: 15px;">{{ headers[i].upper() }}</th>
+                        <th width="7%" scope="col" style="border-top-right-radius: 15px;">{{ headers[i].upper() }}</th>
                     {% endif %}
                 {% endfor %}
             </tr>
