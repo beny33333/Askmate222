@@ -5,22 +5,74 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="static/nowy2.css" rel="stylesheet" type="text/css"/>
     <title>Document</title>
+    <style>
+        textarea
+        {
+            background-color: #F3E5AB;
+            font-size: 15px;
+        }
+    </style>
 </head>
 <body>
-<h1>Ask mate - Add new question</h1>
+    <div class='container'>
+        <div class="header">
+            <div class="logo">
+                <img src="static/logo.png">
+            </div>
+        </div>
+        <div class="sekcja">
+            <a href="http://127.0.0.1:5002"><div class="option">Main page</div></a>
+            <a href="{{ url_for('display_add_question') }}"><div class="option">Add a new question</div></a>
+            <div class="option">Log in</div>
+            <div class="option">Sign Up</div>
+            <div class="option">Support</div>
+            <div style="clear:both;"></div>
+        </div>
+        <div class="topbar">
+            <p style="font-size: 25px; margin: 0;">Add a new question</p>
+        </div>
+        <div class="sekcja">
+                <form action="{{ url_for('add_question') }}" method="post">
+                <p class="sekcja1">
+                    <label for="title" style="font-size: 20px; letter-spacing: 2px;">Title:</label>
+                    <textarea placeholder="Type title of question." cols="30" rows="3" name="title" id="title" style="resize: none; margin-left: 37px;"></textarea>
+                </p>
+                <p class="sekcja1">
+                    <label for="message" style="font-size: 20px; letter-spacing: 2px;">Message:</label>
+                    <textarea placeholder="Type a question." cols="90" rows="11" name="message" id="message"></textarea>
+                </p>
+                <p class="sekcja1">
+                    <label for="image" style="font-size: 20px; letter-spacing: 2px;">Image:</label>
+                    <input type="file" class="choose" name="image" id="image">
+                </p>
+                    <p class="sekcja1">
+                        <input type="submit" value="Add" style="color: #300E01; background-color: #F3E5AB; font-size: 17px; width: 50px; height: 30px; border: none; border-radius: 3px; cursor: pointer;">
+                    </p>
+                <div style="clear:both;"></div>
+                </form>
+            </div>
 
-    <form action="{{ url_for('add_question') }}" method="post">
-        <label for="title">Title:</label><br>
-        <input type="text" name="title" id="title"><br>
-        <br>
-        <label for="message">Message:</label><br>
-        <textarea name="message" id="message"></textarea><br>
-        <br>
-        <label for="image">Image:</label>
-        <input type="file" name="image" id="image"><br>
-        <br>
-        <input type="submit" value="Add">
-    </form>
+        <table>
+        <div class="socials">
+            <div class="socialdivs">
+                <div class="fb"><i class="icon-facebook-official"></i></div>
+                <div class="tw">
+                    <i class="icon-twitter"></i>
+                </div>
+                <div class="insta">
+                    <i class="icon-instagram"></i>
+                </div>
+                <div class="gp">
+                    <i class="icon-googleplus"></i>
+                </div>
+                <div style="clear:both"></div>
+            </div>
+        </div>
+        </table>
+        <div class="footer"><i>copyright © Sidżej i przyjaciele. Wszelkie prawa zastrzeżone</i>
+        </div>
+    </div>
 </body>
 </html>

@@ -5,28 +5,46 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="static/nowy.css">
-    <title>Ask Mate</title>
+    <link href="static/nowy2.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/fontello.css') }}">
 </head>
+
 <body>
-    <h1>Ask Mate - Questions</h1>
-    <h2><a href="{{ url_for('display_add_question') }}">Add a new question</a></h2><br>
-    <table>
+    <div class='container'>
+        <div class="header">
+            <div class="logo">
+                <img src="static/logo.png">
+            </div>
+        </div>
+
+        <div class="sekcja">
+            <a href="http://127.0.0.1:5002"><div class="option">Main page</div></a>
+            <a href="{{ url_for('display_add_question') }}"><div class="option">Add a new question</div></a>
+            <div class="option">Log in</div>
+            <div class="option">Sign Up</div>
+            <div class="option">Support</div>
+            <div style="clear:both;"></div>
+        </div>
+        <div class="topbar">
+        Ask Mate 2 jest serwisem internetowym służącym do zdobywania oraz dzielania się informacjami przez użytkowników. Działa on na zasadzie zadawania pytań i zbierania odpowiedzi, które mają rozwiązać problem wskazany przez użytkowanika zadającego pytanie.
+        </div>
+{#        <div id="zmienna">#}
+        <table>
         <thead>
             <tr>
                 {% for i in range(6) %}
                     {% if i == 0 %}
-                        <th scope="col" style="width: 50px; border-left: 2px solid red; border-top-left-radius: 15px;">{{ headers[i] }}</th>
+                        <th scope="col" style="border-top-left-radius: 15px; border-left: 2px solid #300E01">{{ headers[i].upper() }}</th>
                     {% elif i == 1 %}
-                        <th scope="col" style="width: 100px;">{{ headers[i] }}</th>
+                        <th scope="col"> {{ headers[i].upper() }}</th>
                     {% elif i == 2 %}
-                        <th scope="col" style="width: 100px;">{{ headers[i] }}</th>
+                        <th scope="col">{{ headers[i].upper() }}</th>
                     {% elif i == 3 %}
-                        <th scope="col" style="width: 310px;">{{ headers[i] }}</th>
+                        <th scope="col">{{ headers[i].upper() }}</th>
                     {% elif i == 4 %}
-                        <th scope="col" style="width: 780px;">{{ headers[i] }}</th>
+                        <th scope="col">{{ headers[i].upper() }}</th>
                     {% elif i == 5 %}
-                        <th scope="col" style="width: 100px; border-top-right-radius: 15px;">{{ headers[i] }}</th>
+                        <th scope="col" style="border-top-right-radius: 15px;">{{ headers[i].upper() }}</th>
                     {% endif %}
                 {% endfor %}
             </tr>
@@ -40,33 +58,34 @@
                     {% if count.value < length %}
                         {% for key in question.keys() %}
                             {% if key == 'id' and question[key] != length %}
-                                <td style="width: 50px; border-left: 1px solid red;"><a href="{{ url_for("display_one_question", user=question[key]) }}">{{ question[key] }}</a></td>
-
+                                <td style="max-width: 50px; border-left: 1px solid #300E01"><a href="{{ url_for("display_one_question", user=question[key])  }}" style="text-decoration: none; color: black">{{ question[key] }}</a></td>
                             {% endif %}
                             {% if key == 'image' and question[key] != '' %}
-                                <td style="width: 100px; height: 50px"><img src= "{{ url_for( 'static', filename = question[key]) }}" title="Image"></td>
+                                <td style="max-width: 100px; text-align: center;"><img src= "{{ url_for( 'static', filename = question[key]) }}" style="max-height:100px; max-width:100px;" title="Image"></td>
+                            {% elif key == 'image' and question[key] == '' %}
+                                <td style="max-width: 100px; text-align: center;">{{ question[key] }}</td>
                             {% elif key == 'title' %}
-                                <td style="width: 310px; text-align: left;">{{ question[key] }}</td>
+                                <td style="max-width: 100px; text-align: left;">{{ question[key] }}</td>
                             {% elif key == 'message' %}
-                                <td style="width: 780px; text-align: left;">{{ question[key] }}</td>
+                                <td style="max-width: 100px; text-align: left;">{{ question[key] }}</td>
                             {% elif key != 'id' and key != 'active' and key != 'active' %}
-                                <td> {{ question[key] }}</td>
+                                <td style="width: 50px;"> {{ question[key] }}</td>
                             {% endif %}
                             {% endfor %}
                         {% elif count.value == length %}
                         {% for key in question.keys() %}
                             {% if key == 'id' %}
-                                <td style="width: 50px; border-left: 1px solid red; border-bottom-left-radius: 15px;"><a href="{{ url_for("display_one_question", user=question[key]) }}">{{ question[key] }}</a></td>
+                                <td style="max-width: 50px; border-bottom-left-radius: 15px; border-left: 1px solid #300E01"><a href="{{ url_for("display_one_question", user=question[key]) }}" style="text-decoration: none; color: black">{{ question[key] }}</a></td>
                             {% elif key == 'image' and question[key] != '' %}
-                                <td style="width: 100px; height: 50px; border-bottom-right-radius: 15px;"><img src= "{{ url_for( 'static', filename = question[key]) }}" title="Image"></td>
+                                <td style="max-width: 100px; border-bottom-right-radius: 15px; text-align: center;"><img src= "{{ url_for( 'static', filename = question[key]) }}" style="max-height:100px; max-width:100px;" title="Image"></td>
                             {% elif key == 'image' and question[key] == '' %}
-                                <td style="width: 100px; height: 50px; border-bottom-right-radius: 15px;">{{ question[key] }}</td>
+                                <td style="max-width: 100px; border-bottom-right-radius: 15px; text-align: center;">{{ question[key] }}</td>
                             {% elif key == 'title' %}
-                                <td style="width: 310px; text-align: left;">{{ question[key] }}</td>
+                                <td style="max-width: 310px; text-align: left;">{{ question[key] }}</td>
                             {% elif key == 'message' %}
-                                <td style="width: 780px; text-align: left;">{{ question[key] }}</td>
+                                <td style="max-width: 750px; text-align: left;">{{ question[key] }}</td>
                             {% elif key != 'id' and key != 'active' and key != 'img' %}
-                                <td> {{ question[key] }}</td>
+                                <td style="width: 50px;"> {{ question[key] }}</td>
                             {% endif %}
                         {% endfor %}
                     {% endif %}
@@ -74,5 +93,29 @@
             {% endfor %}
         </tbody>
     </table>
+{#        </div>#}
+    <table>
+        <div class="socials">
+            <div class="socialdivs">
+                <a href="http://www.facebook.com" style="color: black;"><div class="fb">
+                    <i class="icon-facebook-official"></i>
+                </div></a>
+                <a href="http://www.twitter.com" style="color: black;"><div class="tw">
+                    <i class="icon-twitter"></i>
+                </div></a>
+                <a href="http://www.instagram.com" style="color: black;"><div class="insta">
+                    <i class="icon-instagram"></i>
+                </div></a>
+                <a href="http://www.youtube.com" style="color: black;"><div class="yt">
+                    <i class="icon-youtube"></i>
+                </div></a>
+                <div style="clear:both"></div>
+            </div>
+        </div>
+        </table>
+    <div id="footer"><i>copyright © Sidżej i przyjaciele. Wszelkie prawa zastrzeżone</i>
+    </div>
+    </div>
 </body>
+
 </html>
