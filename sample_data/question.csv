@@ -1,8 +1,9 @@
 id;view_number;vote_number;title;message;image;active
 1;246;9;How to make lists in Python?;I am totally new to this, any hints?;python_adjusted.png;frozen
-2;144;-3;Wordpress loading multiple jQuery Versions;I developed a plugin that uses the jquery booklet plugin (http://builtbywill.com/booklet/#/) this plugin binds a function to $ so I cann call $('.myBook').booklet(). I could easy managing the loading order with wp_enqueue_script so first I load jquery then I load booklet so everything is fine. BUT in my theme i also using jquery via webpack so the loading order is now following: jquery booklet app.js (bundled file with webpack, including jquery);;
+2;172;-3;Wordpress loading multiple jQuery Versions;I developed a plugin that uses the jquery booklet plugin (http://builtbywill.com/booklet/#/) this plugin binds a function to $ so I cann call $('.myBook').booklet(). I could easy managing the loading order with wp_enqueue_script so first I load jquery then I load booklet so everything is fine. BUT in my theme i also using jquery via webpack so the loading order is now following: jquery booklet app.js (bundled file with webpack, including jquery);;
 3;1500;57;Drawing canvas with an image picked with Cordova Camera Plugin;I'm getting an image from device and drawing a canvas with filters using Pixi JS. It works all well using computer to get an image. But when I'm on IOS, it throws errors such as cross origin issue, or that I'm trying to use an unknown format. This is the code I'm using to draw the image (that works on web/desktop but not cordova built ios app);;
-4;344;13;Kebson w picie czy w lawaszu??;Nie moge sie zdecydowac, help pls!;;
+4;357;13;jaki kebson;|nie mogê siê zdecydowaæ
+|;;
 5;42;1;Kiedy w koncu bedzie cieplo??;Mam juz dosc tego sniegu i zimna, chce lato!;sloneczko.png;
 6;4;-1;|sdcjdsnf;juodsklfn;sl;;;ujindsfuoibdsfipdsfbibfdsbidfpsibdsfibdspfidsfdsbipfsdifbdsifhbnsdfikbsdhjfuksdbfuhisdbfhisjdkfbsduifbsdifusdbhfuisdbyhfsudifbsdfhbsdfsdbfsduikfbnsdbfsduhijbfsdfsdfsd|;fsdfsdfsdfdsfsdafsadfsdf;;frozen
 7;1;0;abc abc abc abc abc abc abc abc abc abc abc abc abc abc bac abc abc abca abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc bac abc abc abca abc asbsd asjdhj ashd ujahfu ahuha ufhasui gjhid sjgoi sjkg odjhio iohjk fiod jkh odkhodk hgfdhddf;edsfsdfsdf;;frozen

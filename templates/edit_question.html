@@ -5,20 +5,77 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='nowy2.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/fontello.css') }}">
     <title>Document</title>
+    <style>
+        textarea
+        {
+            background-color: #F3E5AB;
+            font-size: 15px;
+        }
+    </style>
 </head>
-<h1>Ask mate - Edit question</h1>
-
-    <form action="{{ url_for('edit_question', user=user) }}" method="post">
-        <label for="title">Title:</label><br>
-        <textarea name="title">{{ question[0]["title"] }}</textarea><br>
-        <br>
-        <label for="message">Message:</label><br>
-        <textarea name="message">{{ question[0]["message"] }}</textarea><br>
-        <br>
-        <input type="submit" value="Add">
-    </form>
 <body>
+    <div class='container'>
+        <div class="header">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='logo.png') }}">
+            </div>
+        </div>
+        <div class="sekcja">
+            <a href="http://127.0.0.1:5002"><div class="option">Main page</div></a>
+            <a href="{{ url_for('display_add_question') }}"><div class="option">Add a new question</div></a>
+            <div class="option">Log in</div>
+            <div class="option">Sign Up</div>
+            <div class="option">Support</div>
+            <div style="clear:both;"></div>
+        </div>
+        <div class="topbar">
+            <p style="font-size: 25px; margin: 0;">Add a new question</p>
+        </div>
+        <div class="sekcja">
+                <form action="{{ url_for('edit_question', user=user) }}" method="post">
+                <p class="sekcja1">
+                    <label for="title" style="font-size: 20px; letter-spacing: 2px;">Title:</label>
+                    <textarea name="title"cols="30" rows="3" name="title" id="title" maxlength="100" style="resize: none; margin-left: 37px; ">{{ question[0]["title"] }}</textarea>
+                </p>
+                <p class="sekcja1">
+                    <label for="message" style="font-size: 20px; letter-spacing: 2px;">Message:</label>
+                    <textarea name="message" cols="90" rows="11" name="message" id="message">{{ question[0]["message"] }}</textarea>
+                </p>
+                <p class="sekcja1">
+                    <label for="image" style="font-size: 20px; letter-spacing: 2px;">Image:</label>
+                    <input type="file" class="choose" name="image" id="image">
+                </p>
+                    <p class="sekcja1">
+                        <input type="submit" value="Add" style="color: #300E01; background-color: #F3E5AB; font-size: 17px; width: 50px; height: 30px; border: none; border-radius: 3px; cursor: pointer;">
+                    </p>
+                <div style="clear:both;"></div>
+                </form>
+            </div>
 
+            <table>
+        <div class="socials">
+            <div class="socialdivs">
+                <a href="http://www.facebook.com" style="color: black;"><div class="fb">
+                    <i class="icon-facebook-official"></i>
+                </div></a>
+                <a href="http://www.twitter.com" style="color: black;"><div class="tw">
+                    <i class="icon-twitter"></i>
+                </div></a>
+                <a href="http://www.instagram.com" style="color: black;"><div class="insta">
+                    <i class="icon-instagram"></i>
+                </div></a>
+                <a href="http://www.youtube.com" style="color: black;"><div class="yt">
+                    <i class="icon-youtube"></i>
+                </div></a>
+                <div style="clear:both"></div>
+            </div>
+        </div>
+        </table>
+    <div id="footer"><i>copyright © Sidżej i przyjaciele. Wszelkie prawa zastrzeżone</i>
+    </div>
+    </div>
 </body>
 </html>
