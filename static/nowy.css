@@ -1,0 +1,54 @@
+body
+{
+    background-color: lightgrey;
+}
+
+
+h1
+{
+    color: #dedede;
+}
+
+table
+{
+    width: 90%;
+    /* określa szerokość tabeli na 75%*/
+    height:100px;
+    /* określa wysokość tabeli na 100px*/
+    padding: 10px;
+    /* określa margines wewnętrzny na 10 px */
+    margin: 15px auto 15px auto;
+    /* określa margines zewnętrzny- tabela zostaje wyśrodkowana */
+    background-color: white;
+    /* określa background tabeli */
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    /* określa zaokrąglenie rogów tabeli za pomocą CSS3*/
+    box-shadow: 5px 5px 50px blue;
+    -moz-box-shadow: 5px 5px 50px blue;
+    -webkit-box-shadow:5px 5px 50px blue;
+    /* określa oceniowanie tabeli za pomocą CSS3*/
+}
+
+th
+{
+    margin-bottom: 20px;
+    border-top: 2px solid red;
+    border-bottom: 2px solid red;
+    border-right: 2px solid red;
+    color: red;
+    font-size: 20px;
+}
+
+td
+{
+    width: 100px;
+    height: 50px;
+    text-align: center;
+    padding: 5px;
+    border-bottom: 1px solid red;
+    border-right: 1px solid red;
+    font-size: 15px;
+    margin: 0;
+}

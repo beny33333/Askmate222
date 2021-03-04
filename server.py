@@ -13,8 +13,9 @@ def route_list():
     for question in list_of_questions:
         if question['active'] != "frozen":
             questions.append(question)
+    length = int(len(questions))
     headers = data_handler.QUESTION_HEADER
-    return render_template('list.html', questions=questions, headers=headers)
+    return render_template('list.html', questions=questions, headers=headers, length=length)
 
 
 @app.route('/add-question')
@@ -61,7 +62,7 @@ def add_new_answer(user):
 @app.route('/question/<int:user>/delete')
 def delete_question(user):
     questions = data_handler.delete_question(user)
-    data_handler.save_user_story(questions, "w")
+    data_handler.save_user_story(questions, "w") #to delete
     return redirect(url_for('route_list'))
 
 
@@ -103,9 +104,28 @@ def delete_answer(answer_id):
     return redirect(url_for('display_one_question', user=user))
 
 
+@app.route('/question/<int:user>/edit')
+def display_edit_question(user):
+    question_id = user
+    question = data_handler.get_one_question(question_id)
+    return render_template('edit_question.html', user=user, question=question)
+
+
+@app.route('/question/<int:user>/edit', methods=['POST'])
+def edit_question(user):
+    question = dict(request.form)
+    list_of_questions = data_handler.get_all_questions()
+    for element in list_of_questions:
+        if int(element['id']) == int(user):
+            element['title'] = question['title']
+            element['message'] = question['message']
+    data_handler.save_user_story(list_of_questions, "w")
+    return redirect(url_for('display_one_question', user=user))
+
+
 if __name__ == "__main__":
     app.run(
         host='127.0.0.1',
-        port=5000,
+        port=5002,
         debug=True,
     )
