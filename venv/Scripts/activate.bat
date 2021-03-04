@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\macie\PycharmProjects\super-sprinter-3000-python-maciejlewicki95\venv
+set VIRTUAL_ENV=C:\SS3000\flaskProject\venv
 
 if not defined PROMPT set PROMPT=$P$G
 

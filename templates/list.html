@@ -26,7 +26,7 @@
             <div style="clear:both;"></div>
         </div>
         <div class="topbar">
-        Ask Mate 2 jest serwisem internetowym służącym do zdobywania oraz dzielania się informacjami przez użytkowników. Działa on na zasadzie zadawania pytań i zbierania odpowiedzi, które mają rozwiązać problem wskazany przez użytkowanika zadającego pytanie.
+        Działa on na zasadzie zadawania pytań i zbierania odpowiedzi, które mają rozwiązać problem wskazany przez użytkowanika zadającego pytanie. Ask Mate 2 jest serwisem internetowym służącym do zdobywania oraz dzielania się informacjami przez użytkowników. Działa on na zasadzie zadawania pytań i zbierania odpowiedzi, które mają rozwiązać problem wskazany przez użytkowanika zadającego pytanie.
         </div>
 {#        <div id="zmienna">#}
         <table>
@@ -53,7 +53,6 @@
        {% set count = namespace(value=0) %}
             {% for question in questions %}
                 {% set count.value = count.value + 1 %}
-
                 <tr>
                     {% if count.value < length %}
                         {% for key in question.keys() %}

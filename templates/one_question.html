@@ -6,6 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='nowy2.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/fontello.css') }}">
     <title>Document</title>
 </head>
 <body>
@@ -22,32 +23,69 @@
         <div class="option">Support</div>
         <div style="clear:both;"></div>
     </div>
-    <div class="sekcja" style="min-height: 41px;">
+    <div class="topbar" style="margin-bottom: 0;">
         <div class="baronequestion">{{ question[0]['title'] }}</div>
+        <a href="{{ url_for('delete_question', user=question_id) }}"><div class="baronequestion" style="float:right;"><u>Delete question</u></div></a>
+        <a href="{{ url_for('edit_question', user=question_id) }}"><div class="baronequestion" style="float:right;"><u>Edit question</u></div></a>
+        <a href="{{ url_for('vote_up', user=question_id) }}"><div class="baronequestion" style="float:right; margin-left: 0;"><u>+1</u></div></a>
+        <div class="baronequestion" style="float:right;">{{ question[0]['vote_number'] }}</div>
+        <a href="{{ url_for('vote_down', user=question_id) }}"><div class="baronequestion" style="float:right;margin-right: 0;"><u>-1</u></div></a>
+        <div style="clear:both"></div>
     </div>
-        {#          {{ question[0]['title'] }}#}
-        {#        <h3>{{ question[0]['message'] }}</h3>#}
-        {#        <h4>Votes: {{ question[0]['vote_number'] }}</h4>#}
-        {#        <a href="{{ url_for('vote_up', user=question_id) }}">Vote Up</a>#}
-        {#        <a href="{{ url_for('vote_down', user=question_id) }}">Vote Down</a>#}
-        {#        <br><br><br><a href="{{ url_for('add_new_answer', user=question_id) }}">Add a new answer</a>#}
-        {#        <br><br><h3><u>Answers:</u></h3>#}
-        {#        {% for i in range(length) %}#}
-        {#            {% for key in answers[i].keys() %}#}
-        {#                {% if key == 'vote_number' %}#}
-        {#                    <h4>{{ i+1 }}. {{ answers[i]['message'] }}</h4>#}
-        {#                    <h4><i>Votes: {{ answers[i][key] }}</i></h4>#}
-        {#                    <a href="{{ url_for('vote_up_answer', answer_id=answers[i]['id']) }}">Vote Up</a>#}
-        {#                    <a href="{{ url_for('vote_down_answer', answer_id=answers[i]['id']) }}">Vote Down</a>#}
-        {#                    <br><a href="{{ url_for('delete_answer', answer_id=answers[i]['id']) }}">Delete {{ i+1 }}. answer</a>#}
-        {#                {% endif %}#}
-        {#            {% endfor %}#}
-        {#        {% endfor %}#}
-        {#        <br>#}
-        {#        <br><a href="{{ url_for('delete_question', user=question_id) }}">Delete question</a>#}
-        {#        <br><a href="{{ url_for('edit_question', user=question_id) }}">Edit question</a>#}
-        {#        <br><br>#}
-        {#        <a href="{{ url_for('route_list')}}">Back to questions list</a>#}
-</div>
+
+                <div class="topbar" style="background-color: #541d05; margin-top: 0; margin-bottom: 5px; font-size: 21px;"><span style="padding: 20px"><i>{{ question[0]['message'] }}</i></span></div>
+
+    <div class="topbar"  style="height: 41px; margin-top: 0; margin-bottom: 20px; padding: 1px; width:95%; float:right;">
+        <div class="option2" style="font-size: 25px; border-right: 0px;">Answers:</div>
+        <a href="{{ url_for('add_new_answer', user=question_id) }}">
+            <div class="option" style="border-right: 0px; float:right">Add a new answer</div></a></div>
+{#        <div class="topbar" style="background-color:#541d05; font-size: 18px;">#}
+
+        <div> {% for i in range(length) %}
+
+                    {% for key in answers[i].keys() %}
+                        {% if key == 'vote_number' %}
+
+                            <div class="dziecko2"><i>{{ i+1 }}. {{ answers[i]['message'] }}</i></div>
+                            <div style="clear: both"></div>
+{#                            <div style="background-color: #F3E5AB; height:1px;"></div>#}
+{#                            <a href="{{ url_for('delete_answer', answer_id=answers[i]['id']) }}"><div class="diecko5"><u>Delete anser</u></div></a>#}
+                            <a href="{{ url_for('delete_answer', answer_id=answers[i]['id']) }}"><div class="dziecko5" style="float:right;"><u>Delete answer</u></div></a>
+                            <a href="{{ url_for('vote_up_answer', answer_id=answers[i]['id']) }}"><div class="dziecko3" style="float:right;"><u>+1</u></div></a>
+                            <div class="dziecko1"><i>Votes: {{ answers[i][key] }}</i></div>
+                            <a href="{{ url_for('vote_down_answer', answer_id=answers[i]['id']) }}"><div class="dziecko4" style="float:right;"><u>-1</u></div></a>
+                            <div style="clear: both"></div>
+                            <div style="background-color: #F3E5AB; height:15px;"></div>
+
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+        </div>
+{#        </div>#}
+ </tr>
+    </thead>
+</table>
+<table>
+        <div class="socials">
+            <div class="socialdivs">
+                <a href="http://www.facebook.com" style="color: black;"><div class="fb">
+                    <i class="icon-facebook-official"></i>
+                </div></a>
+                <a href="http://www.twitter.com" style="color: black;"><div class="tw">
+                    <i class="icon-twitter"></i>
+                </div></a>
+                <a href="http://www.instagram.com" style="color: black;"><div class="insta">
+                    <i class="icon-instagram"></i>
+                </div></a>
+                <a href="http://www.youtube.com" style="color: black;"><div class="yt">
+                    <i class="icon-youtube"></i>
+                </div></a>
+                <div style="clear:both"></div>
+            </div>
+        </div>
+        </table>
+    <div id="footer"><i>copyright © Sidżej i przyjaciele. Wszelkie prawa zastrzeżone</i>
+        </div>
+        </div>
 </body>
 </html>

@@ -14,6 +14,9 @@ tbody tr:nth-child(2n)
 body
 {
     background-color: #F3E5AB;
+    white-space: normal !important;
+    word-wrap: break-word;
+
 }
 
 a
@@ -100,6 +103,7 @@ td
     color: #F3E5AB;
     padding: 10px;
     height: auto;
+
 }
 
 #headers
@@ -132,9 +136,9 @@ td
 {
     float:left;
     min-width: 50px;
-    height: 21px;
+    height: auto;
     padding: 10px;
-    text-align: left;
+    /*text-align: left;*/
     font-size: 20px;
 }
 
@@ -164,10 +168,9 @@ td
 .option2
 {
     float:left;
-    min-width: 50px;
     height: auto;
     font-size: 15px;
-    padding: 10px;
+    padding:8px;
     border-right: 2px dotted #444444;
     opacity: 0.9;
 
@@ -272,4 +275,50 @@ td
   cursor: pointer;
   font-size: 17px;
   margin-left: 24px;
+}
+
+.dziecko1 {
+  float:right;
+  width:10%;
+  background-color: #541d05;
+    color: #F3E5AB;
+    text-align: center;
+}
+
+.dziecko2 {
+  float:right;
+  padding:10px;
+  width:1405px;
+  color: #F3E5AB;
+  background-color:#300E01;
+  font-size: 18px;
+}
+.dziecko3 {
+    float: right;
+    width: 10%;
+    color: #F3E5AB;
+    background-color: #541d05;
+
+}
+.dziecko4 {
+    float: right;
+    width: 65%;
+    color: #F3E5AB;
+    background-color: #541d05;
+    text-align: right;
+
+}
+
+.dziecko5 {
+    float: right;
+    width: 10%;
+    color: #F3E5AB;
+    background-color: #541d05;
+    text-align: center;
+}
+.emptykid {
+
+    float:left;
+    background-color: #300E01 ;
+
 }
